@@ -1,5 +1,3 @@
-package calendario;
-
 public enum Mese {
     Gennaio(31),
     Febbraio(28),
