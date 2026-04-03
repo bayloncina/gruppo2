@@ -1,4 +1,4 @@
-public class Dipendente extends Persona {
+public abstract class Dipendente extends Persona {
 
     private String mansione;
     private String azienda;

@@ -1,15 +1,15 @@
 public class Calendario {
-    private Mese mese;
-    
-    public Calendario(Mese mese) {
+    private EnumMese mese;
+
+    public Calendario(EnumMese mese) {
         this.mese = mese;
     }
 
-    public Mese getMese() {
+    public EnumMese getMese() {
         return mese;
     }
 
-    public void setMese(Mese mese) {
+    public void setMese(EnumMese mese) {
         this.mese = mese;
     }
 

@@ -1,34 +1,43 @@
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class GestoreOre {
 
-                        private void inseisciOre(ArrayList dipendenti, Scanner scanner) {
-			            int totaleOre = 0;
-                        
-                        System.out.println("Seleziona dipendente: ");
-                        for (int i = 0; i < dipendenti.size(); i++) {
-                            System.out.println(i + " - " + dipendenti.get(i).getNome());
-                        }
+    // private ArrayList<Dipendente> dipendenti = new ArrayList<>();
+    int totaleOre;
 
-                        int scelta = Integer.parseInt(scanner.nextLine());
-                        Dipendente dip = dipendenti.get(scelta);
+    private void inserisciOre(ArrayList<Dipendente> dipendenti, Scanner scanner) {
 
-                        // mese
-                        System.out.println("Inserisci mese:");
-                        String meseInput = scanner.nextLine();
-                        EnumMese mese = EnumMese.valueOf(meseInput);
+        System.out.println("Seleziona dipendente: ");
+        for (int i = 0; i < dipendenti.size(); i++) {
+            System.out.println(i + " - " + dipendenti.get(i).getNome());
+        }
 
-                        // giorno
-                        System.out.println("Inserisci giorno:");
-                        int giorno = Integer.parseInt(scanner.nextLine());
-                        
-                        //totale ore
-                        int ore = dip.getOreGiornaliere();
-                        totaleOre += ore;
-                    }
+        int scelta = Integer.parseInt(scanner.nextLine());
+        Dipendente dip = dipendenti.get(scelta);
+
+        // mese
+        System.out.println("Inserisci mese:");
+        String meseInput = scanner.nextLine();
+        EnumMese mese = EnumMese.valueOf(meseInput);
+
+        // giorno
+        System.out.println("Inserisci giorno:");
+        int giorno = Integer.parseInt(scanner.nextLine());
+
+        if (giorno < 1 || giorno > mese.getGiorni()) { // controllo per i giorni del mese
+            System.out.println("Giorno non valido per il mese selezionato.");
+            return;
+        }
+
+        // totale ore
+        int ore = dip.getOreLavorateGiornalmente();
+        totaleOre = totaleOre + ore;
+    }
 
     public void menu() {
+
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
@@ -57,7 +66,8 @@ public class GestoreOre {
 
                 }
                 case 0 -> {
-
+                    running = false;
+                    System.out.println("Chiusura del programma");
                 }
                 default -> System.out.println("Scelta non valida.");
             }
