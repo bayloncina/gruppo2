@@ -15,4 +15,35 @@ abstract class Persona {
         this.id = String.format("ID-%03d", ++contatore);
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getContatore() {
+        return contatore;
+    }
+
+    public void setContatore(int contatore) {
+        this.contatore = contatore;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
 }

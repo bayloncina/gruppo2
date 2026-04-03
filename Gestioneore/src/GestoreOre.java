@@ -1,6 +1,32 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestoreOre {
+
+                        private void inseisciOre(ArrayList dipendenti, Scanner scanner) {
+			            int totaleOre = 0;
+                        
+                        System.out.println("Seleziona dipendente: ");
+                        for (int i = 0; i < dipendenti.size(); i++) {
+                            System.out.println(i + " - " + dipendenti.get(i).getNome());
+                        }
+
+                        int scelta = Integer.parseInt(scanner.nextLine());
+                        Dipendente dip = dipendenti.get(scelta);
+
+                        // mese
+                        System.out.println("Inserisci mese:");
+                        String meseInput = scanner.nextLine();
+                        EnumMese mese = EnumMese.valueOf(meseInput);
+
+                        // giorno
+                        System.out.println("Inserisci giorno:");
+                        int giorno = Integer.parseInt(scanner.nextLine());
+                        
+                        //totale ore
+                        int ore = dip.getOreGiornaliere();
+                        totaleOre += ore;
+                    }
 
     public void menu() {
         Scanner scanner = new Scanner(System.in);
