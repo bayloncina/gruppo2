@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+
 public class GestoreOre {
 
     private ArrayList<Dipendente> dipendenti = new ArrayList<>();
@@ -8,9 +12,11 @@ public class GestoreOre {
 
     public static void main(String[] args) {
         GestoreOre gestore = new GestoreOre();
-
+        gestore.inizializzaDipendenti();
         gestore.menu();
     }
+
+    
 
     public void menu() {
         Scanner scanner = new Scanner(System.in);
@@ -22,6 +28,7 @@ public class GestoreOre {
             System.out.println("2. Modifica ore inserite");
             System.out.println("3. Elimina ore inserite");
             System.out.println("4. Mostra ore lavorate");
+            System.out.println("5. Mostra Html");
             System.out.println("0. Esci");
             System.out.print("Scelta: ");
 
@@ -33,6 +40,7 @@ public class GestoreOre {
                 case 2 -> modificaOre(dipendenti, scanner);
                 case 3 -> eliminaOre(dipendenti, scanner);
                 case 4 -> mostraOreLavorate(dipendenti, scanner);
+                case 5 -> mostraListaDipendentiHTML();
                 case 0 -> {
                     running = false;
                     System.out.println("Chiusura del programma");
@@ -155,4 +163,47 @@ public class GestoreOre {
         System.out.println("Ore giornaliere: " + dip.getOreLavorateGiornalmente());
         System.out.println("Totale ore lavorate: " + dip.getTotaleOreLavorate());
     }
+
+    private void mostraListaDipendentiHTML() {
+    // costruisci l'HTML
+    StringBuilder html = new StringBuilder();
+    html.append("<html><body>");
+    html.append("<h2>Lista Dipendenti</h2>");
+    html.append("<table border='1' cellpadding='8'>");
+    html.append("<tr><th>Nome</th><th>Cognome</th><th>Mansione</th><th>Azienda</th><th>Tipo</th><th>Ore giornaliere</th></tr>");
+
+    for (Dipendente dip : dipendenti) {
+        String tipo = (dip instanceof DipendenteFullTime) ? "Full Time" : "Part Time";
+        html.append("<tr>")
+            .append("<td>").append(dip.getNome()).append("</td>")
+            .append("<td>").append(dip.getCognome()).append("</td>")
+            .append("<td>").append(dip.getMansione()).append("</td>")
+            .append("<td>").append(dip.getAzienda()).append("</td>")
+            .append("<td>").append(tipo).append("</td>")
+            .append("<td>").append(dip.getOreLavorateGiornalmente()).append("</td>")
+            .append("</tr>");
+    }
+
+    html.append("</table>");
+    html.append("</body></html>");
+
+    // mostra nella GUI
+    JFrame frame = new JFrame("Lista Dipendenti");
+    JEditorPane editorPane = new JEditorPane();
+    editorPane.setContentType("text/html");
+    editorPane.setEditable(false);
+    editorPane.setText(html.toString());
+
+    frame.add(new JScrollPane(editorPane));
+    frame.setSize(700, 400);
+    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    frame.setLocationRelativeTo(null);
+    frame.setVisible(true);
+}
+private void inizializzaDipendenti() {
+    dipendenti.add(new DipendenteFullTime("Mario", "Rossi", "Acme Srl", "Sviluppatore"));
+    dipendenti.add(new DipendenteFullTime("Luca", "Bianchi", "Acme Srl", "Analista"));
+    dipendenti.add(new DipendentePartTime("Sara", "Verdi", "Acme Srl", "Designer"));
+    dipendenti.add(new DipendentePartTime("Anna", "Neri", "Acme Srl", "Tester"));
+}
 }
