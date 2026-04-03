@@ -13,10 +13,12 @@ public enum Mese {
     Dicembre(31);
 
     private final int giorni;
-    
+
     Mese(int giorni) {
         this.giorni = giorni;
     }
 
-    public int getGiorni () { return giorni; }
+    public int getGiorni() {
+        return giorni;
+    }
 }

@@ -4,10 +4,10 @@ public class Dipendente extends Persona {
     private String azienda;
     private int oreLavorateGiornalmente;
 
-    public Dipendente(String nome, String cognome, String mansione, int oreLavorateGiornalmente) {
+    public Dipendente(String nome, String cognome, String azienda, String mansione) {
         super(nome, cognome);
         this.mansione = mansione;
-        this.oreLavorateGiornalmente = oreLavorateGiornalmente;
+        this.azienda = azienda;
     }
 
     public String getAzienda() {
