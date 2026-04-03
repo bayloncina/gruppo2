@@ -3,6 +3,7 @@ public abstract class Dipendente extends Persona {
     private String mansione;
     private String azienda;
     private int oreLavorateGiornalmente;
+    private int totaleOreLavorate;
 
     public Dipendente(String nome, String cognome, String azienda, String mansione) {
         super(nome, cognome);
@@ -22,6 +23,10 @@ public abstract class Dipendente extends Persona {
         return mansione;
     }
 
+    public int getTotaleOreLavorate() {
+        return totaleOreLavorate;
+    }
+
     public void setAzienda(String azienda) {
         this.azienda = azienda;
     }
@@ -32,5 +37,9 @@ public abstract class Dipendente extends Persona {
 
     public void setMansione(String mansione) {
         this.mansione = mansione;
+    }
+
+    public void setTotaleOreLavorate(int totaleOreLavorate) {
+        this.totaleOreLavorate = totaleOreLavorate;
     }
 }
